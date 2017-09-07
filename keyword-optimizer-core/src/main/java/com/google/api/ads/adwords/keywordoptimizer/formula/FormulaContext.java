@@ -14,8 +14,8 @@
 
 package com.google.api.ads.adwords.keywordoptimizer.formula;
 
-import com.google.api.ads.adwords.axis.v201609.cm.Money;
-import com.google.api.ads.adwords.axis.v201609.o.StatsEstimate;
+import com.google.api.ads.adwords.axis.v201708.cm.Money;
+import com.google.api.ads.adwords.axis.v201708.o.StatsEstimate;
 import com.google.api.ads.adwords.keywordoptimizer.TrafficEstimate;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +29,7 @@ public class FormulaContext {
 
   // This map holds the values of variables.
   private final Map<String, Double> values;
-  
+
   /**
    * Creates a new context for formula evaluation. If a {@link TrafficEstimate} is provided, then
    * the context is initialized with variables holding statistics for the given estimate.
@@ -42,7 +42,7 @@ public class FormulaContext {
     }
   }
 
-  /** 
+  /**
    * Returns the current value of a specified variable or NaN in case no value has been set.
    */
   public double getValue(String identifier) {
@@ -59,14 +59,14 @@ public class FormulaContext {
   public boolean hasValue(String name) {
     return values.containsKey(name);
   }
-  
+
   /**
    * Sets the value of a variable.
    */
   public void setValue(String name, double value) {
     values.put(name, value);
   }
-  
+
   /**
    * Initializes variables and their values based on a given {@link TrafficEstimate}. 
    */

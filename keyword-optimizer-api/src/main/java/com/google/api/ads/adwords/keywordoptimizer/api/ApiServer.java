@@ -36,7 +36,7 @@ import org.slf4j.LoggerFactory;
  */
 @SuppressWarnings("deprecation")
 public class ApiServer {
-  
+
   public static final int DEFAULT_PORT = 8080;
   public static final String DEFAULT_CONTEXT_PATH = "/keyword-optimizer";
   private static final String INIT_PARAM_PACKAGES = "com.sun.jersey.config.property.packages";
@@ -44,13 +44,13 @@ public class ApiServer {
       "com.google.api.ads.adwords.keywordoptimizer.api.ads_properties";
   public static final String INIT_PARAM_PROPERTIES =
       "com.google.api.ads.adwords.keywordoptimizer.api.properties";
-  
+
   private static final String HOST = "localhost";
   private static final String SERVLET_NAME = "Jersey REST Service";
   private static final String SERVLET_PATH = "/api/*";
-  
+
   private static final Logger logger = LoggerFactory.getLogger(ApiServer.class);
-  
+
   private final int port;
   private final String contextPath;
   

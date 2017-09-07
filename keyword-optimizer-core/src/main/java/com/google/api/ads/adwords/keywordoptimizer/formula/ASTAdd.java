@@ -21,7 +21,7 @@ public class ASTAdd extends SimpleNode {
 
   private static final String MINUS = "-";
   private static final String PLUS = "+";
-  
+
   private String operator;
 
   public ASTAdd(int id) {
@@ -74,7 +74,7 @@ public class ASTAdd extends SimpleNode {
       throw new FormulaException("Unknown operator: " + operator);
     }
   }
-  
+
   @Override
   public Object jjtAccept(FormulaParserVisitor visitor, Object data) {
     return visitor.visit(this, data);

@@ -18,6 +18,7 @@ package com.google.api.ads.adwords.keywordoptimizer.formula;
  * This class represents a number of type int in the syntax tree for the formula grammar.
  */
 public class ASTInteger extends SimpleNode {
+
   private int numericValue;
 
   public ASTInteger(int id) {

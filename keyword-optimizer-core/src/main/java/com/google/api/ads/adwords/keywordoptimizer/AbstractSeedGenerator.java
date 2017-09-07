@@ -14,8 +14,8 @@
 
 package com.google.api.ads.adwords.keywordoptimizer;
 
-import com.google.api.ads.adwords.axis.v201609.cm.Keyword;
-import com.google.api.ads.adwords.axis.v201609.cm.KeywordMatchType;
+import com.google.api.ads.adwords.axis.v201708.cm.Keyword;
+import com.google.api.ads.adwords.axis.v201708.cm.KeywordMatchType;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import java.util.Map;
@@ -71,7 +71,7 @@ public abstract class AbstractSeedGenerator implements SeedGenerator {
 
     return keywordCollection;
   }
-  
+
   @Override
   public CampaignConfiguration getCampaignConfiguration() {
     return campaignConfiguration;

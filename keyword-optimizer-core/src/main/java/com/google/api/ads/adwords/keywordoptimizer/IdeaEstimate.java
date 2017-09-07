@@ -14,9 +14,9 @@
 
 package com.google.api.ads.adwords.keywordoptimizer;
 
-import com.google.api.ads.adwords.axis.v201609.cm.Money;
-import com.google.api.ads.adwords.axis.v201609.o.MonthlySearchVolume;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaService;
+import com.google.api.ads.adwords.axis.v201708.cm.Money;
+import com.google.api.ads.adwords.axis.v201708.o.MonthlySearchVolume;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaService;
 import com.google.common.collect.ImmutableList;
 
 /**
@@ -24,38 +24,38 @@ import com.google.common.collect.ImmutableList;
  * TargetingIdeaService}. See http://goo.gl/PqJ878.
  */
 public class IdeaEstimate {
-  
-  // Instance representing an empty or unknown estimate. 
+
+  // Instance representing an empty or unknown estimate.
   public static final IdeaEstimate EMPTY_ESTIMATE =
       new IdeaEstimate(0, 0, KeywordOptimizerUtil.createMoney(0), new MonthlySearchVolume[0]);
-  
+
   private final double competition;
   private final long searchVolume;
   private final Money averageCpc;
   private final ImmutableList<MonthlySearchVolume> targetedMonthlySearches;
-  
-  /** 
+
+  /**
    * Returns the COMPETITION attribute from the {@link TargetingIdeaService}.
    */
   public double getCompetition() {
     return competition;
   }
 
-  /** 
+  /**
    * Returns the SEARCH_VOLUME attribute from the {@link TargetingIdeaService}.
    */
   public long getSearchVolume() {
     return searchVolume;
   }
 
-  /** 
+  /**
    * Returns the AVERAGE_CPC attribute from the {@link TargetingIdeaService}.
    */
   public Money getAverageCpc() {
     return averageCpc;
   }
 
-  /** 
+  /**
    * Returns the TARGETED_MONTHLY_SEARCHES attribute from the {@link TargetingIdeaService}.
    */
   public ImmutableList<MonthlySearchVolume> getTargetedMonthlySearches() {

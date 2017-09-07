@@ -14,8 +14,8 @@
 
 package com.google.api.ads.adwords.keywordoptimizer.api;
 
-import com.google.api.ads.adwords.axis.v201609.cm.Keyword;
-import com.google.api.ads.adwords.axis.v201609.cm.Money;
+import com.google.api.ads.adwords.axis.v201708.cm.Keyword;
+import com.google.api.ads.adwords.axis.v201708.cm.Money;
 import com.google.api.ads.adwords.keywordoptimizer.KeywordCollection;
 import com.google.api.ads.adwords.keywordoptimizer.KeywordInfo;
 import com.google.gson.ExclusionStrategy;

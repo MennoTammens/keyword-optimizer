@@ -46,7 +46,7 @@ public class FormulaScoreCalculator implements ScoreCalculator {
   public FormulaScoreCalculator(String formula) throws FormulaException {
     expression = parseExpression(formula);
   }
-  
+
   public FormulaScoreCalculator(OptimizationContext context) throws FormulaException {
     expression = parseExpression(
             context.getConfiguration()
@@ -61,7 +61,7 @@ public class FormulaScoreCalculator implements ScoreCalculator {
     if (expression == null) {
       throw new IllegalStateException("The expression cannot be null");
     }
-    
+
     FormulaContext context = new FormulaContext(estimate);
     return expression.calculateScore(context);
   }

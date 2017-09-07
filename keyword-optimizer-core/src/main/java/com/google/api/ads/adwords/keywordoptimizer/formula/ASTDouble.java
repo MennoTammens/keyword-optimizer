@@ -18,9 +18,9 @@ package com.google.api.ads.adwords.keywordoptimizer.formula;
  * This class represents a number of type double in the syntax tree for the formula grammar.
  */
 public class ASTDouble extends SimpleNode {
-  
+
   private double numericValue;
-  
+
   public ASTDouble(int id) {
     super(id);
   }
@@ -32,7 +32,7 @@ public class ASTDouble extends SimpleNode {
   public void setValue(double value) {
     this.numericValue = value;
   }
-  
+
   @Override
   public double calculateScore(FormulaContext context) {
     // The numerical value is the score.

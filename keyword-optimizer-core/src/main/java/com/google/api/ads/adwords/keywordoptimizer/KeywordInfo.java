@@ -14,9 +14,8 @@
 
 package com.google.api.ads.adwords.keywordoptimizer;
 
-import com.google.api.ads.adwords.axis.v201609.cm.Keyword;
-
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaService;
+import com.google.api.ads.adwords.axis.v201708.cm.Keyword;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaService;
 
 import javax.annotation.Nullable;
 import org.apache.commons.lang.SystemUtils;
@@ -63,7 +62,7 @@ public class KeywordInfo {
   public TrafficEstimate getTrafficEstimate() {
     return trafficEstimate;
   }
-  
+
   /**
    * Returns the estimated search statistics.
    */
@@ -84,7 +83,7 @@ public class KeywordInfo {
   public boolean hasEstimate() {
     return trafficEstimate != null;
   }
-  
+
   /**
    * Returns whether a search estimate has been set.
    */

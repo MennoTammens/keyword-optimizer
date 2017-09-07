@@ -14,8 +14,12 @@
 
 package com.google.api.ads.adwords.keywordoptimizer;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import com.google.api.ads.adwords.axis.factory.AdWordsServices;
+import com.google.api.ads.adwords.extension.ratelimiter.AdWordsServicesWithRateLimiter;
 import com.google.api.ads.adwords.lib.client.AdWordsSession;
+import com.google.api.ads.adwords.lib.factory.AdWordsServicesInterface;
 import com.google.api.ads.common.lib.auth.GoogleClientSecretsBuilder;
 import com.google.api.ads.common.lib.auth.OfflineCredentials;
 import com.google.api.ads.common.lib.auth.OfflineCredentials.Api;
@@ -30,7 +34,6 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.client.util.Charsets;
 import com.google.common.collect.Lists;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -46,10 +49,10 @@ import org.slf4j.LoggerFactory;
 
 /**
  * This is a basic utility class for helping with AdWords API communication. It handles the
- * authentication by itself and provides method for returning the AdWords session and allows to 
+ * authentication by itself and provides method for returning the AdWords session and allows to
  * create new service objects.
- * 
- * Note on thread safety: This class is not threadsafe due to presence of the enclosed 
+ *
+ * Note on thread safety: This class is not threadsafe due to presence of the enclosed
  * AdWordsSession. See https://github.com/googleads/googleads-java-lib/wiki/Thread-Safety#sessions.
  */
 @NotThreadSafe
@@ -59,25 +62,25 @@ public class AdWordsApiUtil {
 
   // This callback URL will allow you to copy the token from the success screen.
   private static final String CALLBACK_URL = "urn:ietf:wg:oauth:2.0:oob";
-  
+
   // Name of the user agent property in the configuration file. 
   private static final String PROPERTY_USER_AGENT = "api.adwords.userAgent";
-  
+
   // Prefix that will be added to the user-specified user agent. 
   private static final String PREFIX_USER_AGENT = "KeywordOptimizer-";
-  
+
   // Default user agent property value.
   private static final String DEFAULT_USER_AGENT = "INSERT_USERAGENT_HERE";
 
   private static final Logger logger = LoggerFactory.getLogger(AdWordsApiUtil.class);
 
   private AdWordsSession session;
-  private AdWordsServices services;
+  private AdWordsServicesInterface services;
   private String configPath;
 
   /**
    * Creates a new {@link AdWordsApiUtil} object based on the given properties.
-   * 
+   *
    * @param configPath path of the ads.properties config file
    * @throws OAuthException in case of an authentication error
    * @throws ValidationException in case there is no refresh token
@@ -118,7 +121,7 @@ public class AdWordsApiUtil {
     // Wait for the authorization code.
     System.out.println("Type the code you received here: ");
     String authorizationCode =
-        new BufferedReader(new InputStreamReader(System.in, Charsets.UTF_8)).readLine();
+        new BufferedReader(new InputStreamReader(System.in, UTF_8)).readLine();
 
     // Authorize the OAuth2 token.
     GoogleAuthorizationCodeTokenRequest tokenRequest =
@@ -188,7 +191,7 @@ public class AdWordsApiUtil {
    * @throws ConfigurationLoadException in case of an error loading the config file
    */
   private void init() throws OAuthException, ValidationException, ConfigurationLoadException {
-    logger.info("Initializing session and services");
+    logger.info("Initializing session and services interface");
     
     try {
       // Generate a refreshable OAuth2 credential similar to a ClientLogin token
@@ -207,8 +210,8 @@ public class AdWordsApiUtil {
           .withOAuth2Credential(oAuth2Credential)
           .build();
 
-      // Create the services object.
-      services = new AdWordsServices();
+      // Create the services interface object.
+      services = new AdWordsServicesWithRateLimiter(AdWordsServices.getInstance());
     } catch (ValidationException e) {
       if ("refreshToken".equalsIgnoreCase(e.getTrigger())) {
         retrieveRefreshToken();
@@ -267,7 +270,7 @@ public class AdWordsApiUtil {
   }
 
   /**
-   * Creates a new specific service using the {@link AdWordsServices}.
+   * Creates a new specific service using the {@link AdWordsServicesInterface}.
    * 
    * @param interfaceClass the interface of the service
    * @return the newly created service

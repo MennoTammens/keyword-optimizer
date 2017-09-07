@@ -21,7 +21,7 @@ public class ASTMult extends SimpleNode {
 
   private static final String DIVIDE = "/";
   private static final String MULTIPLY = "*";
-  
+
   private String operator;
 
   public ASTMult(int id) {
@@ -50,7 +50,6 @@ public class ASTMult extends SimpleNode {
         }
       }
       return result;
-      
     } else if (DIVIDE.equals(operator)) {
       // If the operator is /, then find first child and divide by the following ones.
       double result = Double.NaN;
@@ -58,7 +57,6 @@ public class ASTMult extends SimpleNode {
       for (Node child : children) {
         if (child instanceof SimpleNode) {
           SimpleNode childCasted = (SimpleNode) child;
-  
           if (firstChild) {
             result = childCasted.calculateScore(context);
             firstChild = false;
@@ -72,7 +70,6 @@ public class ASTMult extends SimpleNode {
       if (Double.isInfinite(result)) {
         return Double.NaN;
       }
-  
       return result;
     } else {
       // This should never happen, as per grammar only * and / area allowed here.

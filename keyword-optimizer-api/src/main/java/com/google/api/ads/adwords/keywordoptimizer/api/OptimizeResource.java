@@ -14,8 +14,8 @@
 
 package com.google.api.ads.adwords.keywordoptimizer.api;
 
-import com.google.api.ads.adwords.axis.v201609.cm.KeywordMatchType;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaServiceInterface;
+import com.google.api.ads.adwords.axis.v201708.cm.KeywordMatchType;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaServiceInterface;
 import com.google.api.ads.adwords.keywordoptimizer.AdWordsApiUtil;
 import com.google.api.ads.adwords.keywordoptimizer.AlternativesFinder;
 import com.google.api.ads.adwords.keywordoptimizer.CachedEstimator;
@@ -152,7 +152,6 @@ public class OptimizeResource {
       // Create seed generator.
       TisUrlSeedGenerator seedGenerator = new TisUrlSeedGenerator(
           context.getAdwordsApiUtil().getService(TargetingIdeaServiceInterface.class),
-          context.getAdwordsApiUtil().getClientCustomerId(),
           parsedMatchTypes,
           campaignConfiguration);
       seedGenerator.addUrl(url);
@@ -189,7 +188,6 @@ public class OptimizeResource {
       TisCategorySeedGenerator seedGenerator =
           new TisCategorySeedGenerator(
               context.getAdwordsApiUtil().getService(TargetingIdeaServiceInterface.class),
-              context.getAdwordsApiUtil().getClientCustomerId(),
               category,
               parsedMatchTypes,
               campaignConfiguration);
@@ -226,7 +224,6 @@ public class OptimizeResource {
       TisSearchTermsSeedGenerator seedGenerator =
           new TisSearchTermsSeedGenerator(
               context.getAdwordsApiUtil().getService(TargetingIdeaServiceInterface.class),
-              context.getAdwordsApiUtil().getClientCustomerId(),
               parsedMatchTypes,
               campaignConfiguration);
       for (String term : searchTerms) {

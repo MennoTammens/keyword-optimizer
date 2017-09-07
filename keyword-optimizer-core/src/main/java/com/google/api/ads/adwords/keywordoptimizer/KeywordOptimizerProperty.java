@@ -19,7 +19,7 @@ package com.google.api.ads.adwords.keywordoptimizer;
  * the .properties file)
  */
 public enum KeywordOptimizerProperty {
-  
+
   AlternativesFinderClass("optimizer.alternativesFinder"),
   EstimatorClass("optimizer.estimator"),
   ScoreCalculatorClass("optimizer.scoreCalculator"),
@@ -29,7 +29,7 @@ public enum KeywordOptimizerProperty {
   RoundStrategyMinImprovementBetweenSteps("optimizer.roundStrategy.minImprovement"),
   RoundStrategyMaxPopulation("optimizer.roundStrategy.maxPopulation"),
   RoundStrategyReplicateBest("optimizer.roundStrategy.replicateBest");
-  
+
   private final String propertyName;
 
   private KeywordOptimizerProperty(String propertyName) {

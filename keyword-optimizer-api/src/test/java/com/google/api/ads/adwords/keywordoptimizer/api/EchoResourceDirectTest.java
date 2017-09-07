@@ -23,7 +23,7 @@ public class EchoResourceDirectTest {
     assertDirectEchoEquals("test");
     assertDirectEchoEquals("www.google.com");
   }
-  
+
   private void assertDirectEchoEquals(String request) {
     String response = resource.handleGet(request);
     assertEquals(request, response);

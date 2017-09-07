@@ -31,14 +31,14 @@ public class ASTIdentifier extends SimpleNode {
   public void setName(String name) {
     this.name = name;
   }
-  
+
   @Override
   public double calculateScore(FormulaContext context) throws FormulaException {
     // Look up the variable name in context and return attached value.
     if (!context.hasValue(name)) {
       throw new FormulaException("No such value: " + name);
     }
-  
+
     return context.getValue(name);
   }
 

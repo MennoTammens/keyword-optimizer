@@ -14,11 +14,11 @@
 
 package com.google.api.ads.adwords.keywordoptimizer;
 
-import com.google.api.ads.adwords.axis.v201609.cm.Criterion;
-import com.google.api.ads.adwords.axis.v201609.cm.Language;
-import com.google.api.ads.adwords.axis.v201609.cm.Location;
-import com.google.api.ads.adwords.axis.v201609.cm.Money;
-import com.google.api.ads.adwords.axis.v201609.o.TrafficEstimatorService;
+import com.google.api.ads.adwords.axis.v201708.cm.Criterion;
+import com.google.api.ads.adwords.axis.v201708.cm.Language;
+import com.google.api.ads.adwords.axis.v201708.cm.Location;
+import com.google.api.ads.adwords.axis.v201708.cm.Money;
+import com.google.api.ads.adwords.axis.v201708.o.TrafficEstimatorService;
 import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ import java.util.List;
 public class CampaignConfiguration {
   private final ImmutableList<Criterion> additionalCriteria;
   private final Money maxCpc;
-  
+
   /**
    * Creates a new configuration using the given maximum CPC and a list of additional criteria. This
    * should never be invoked from the outside, use the {@link CampaignConfiguration#builder}
@@ -60,21 +60,21 @@ public class CampaignConfiguration {
   public Money getMaxCpc() {
     return maxCpc;
   }
-  
+
   /**
    * Creates a new builder for {@link CampaignConfiguration}.
    */
   public static CampaignConfigurationBuilder builder() {
     return new CampaignConfigurationBuilder();
   }
-  
+
   /**
    * Builder for {@link CampaignConfiguration}.
    */
   public static class CampaignConfigurationBuilder {
     private final List<Criterion> additionalCriteria;
     private Money maxCpc;
-    
+
     /**
      * Builder for {@link CampaignConfiguration}.
      */
@@ -95,10 +95,10 @@ public class CampaignConfiguration {
       additionalCriteria.add(criterion);
       return this;
     }
-    
+
     /**
      * Adds a given location to the list of an additional criteria (convenience method).
-     * 
+     *
      * @param locationId the ID of the location (e.g. 1023191 = New York)
      */
     public CampaignConfigurationBuilder withLocation(long locationId) {
@@ -107,10 +107,10 @@ public class CampaignConfiguration {
 
       return withCriterion(location);
     }
-    
+
     /**
      * Adds a given language to the list of an additional criteria (convenience method)
-     * 
+     *
      * @param languageId the ID of the language (e.g. 1000 = English)
      */
     public CampaignConfigurationBuilder withLanguage(long languageId) {
@@ -119,7 +119,7 @@ public class CampaignConfiguration {
 
       return withCriterion(language);
     }
-    
+
     /**
      * Set the maximum cpc for retrieving accurate estimates (see
      * <a href="https://goo.gl/v61zXt">max. CPC definition</a>).
@@ -130,7 +130,7 @@ public class CampaignConfiguration {
       this.maxCpc = maxCpc;
       return this;
     }
-    
+
     /**
      * Create the {@link CampaignConfiguration} object.
      */

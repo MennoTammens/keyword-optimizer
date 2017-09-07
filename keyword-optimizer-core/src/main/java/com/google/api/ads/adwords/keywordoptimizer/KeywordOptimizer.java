@@ -14,9 +14,11 @@
 
 package com.google.api.ads.adwords.keywordoptimizer;
 
-import com.google.api.ads.adwords.axis.v201609.cm.KeywordMatchType;
-import com.google.api.ads.adwords.axis.v201609.cm.Money;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaServiceInterface;
+import static java.nio.charset.StandardCharsets.UTF_8;
+
+import com.google.api.ads.adwords.axis.v201708.cm.KeywordMatchType;
+import com.google.api.ads.adwords.axis.v201708.cm.Money;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaServiceInterface;
 import com.google.api.ads.adwords.keywordoptimizer.CampaignConfiguration.CampaignConfigurationBuilder;
 import com.google.api.ads.common.lib.conf.ConfigurationLoadException;
 import com.google.api.ads.common.lib.exception.OAuthException;
@@ -88,7 +90,7 @@ public class KeywordOptimizer {
   private static final String BULK_SHEET_ACTION = "add";
 
   /**
-   * Available output modes for results. An output mode may or may not need an addition file 
+   * Available output modes for results. An output mode may or may not need an addition file
    * parameter.
    */
   private enum OutputMode {
@@ -106,7 +108,7 @@ public class KeywordOptimizer {
       this.outputFileRequired = outputFileRequired;
     }
   }
-  
+
   /**
    * Main method called from the command line.
    *
@@ -160,7 +162,7 @@ public class KeywordOptimizer {
     }
 
     logHeadline("Startup");
-    
+
     // Check output parameters ahead of time.
     checkOutputParameters(cmdLine);
 
@@ -419,13 +421,13 @@ public class KeywordOptimizer {
    */
   private static CampaignConfiguration getCampaignConfiguration(CommandLine cmdLine) {
     CampaignConfigurationBuilder builder = CampaignConfiguration.builder();
-    
+
     // Read the max. Cpc parameter.
     double cpc = Double.parseDouble(cmdLine.getOptionValue("cpc"));
     Money maxCpc = new Money();
     maxCpc.setMicroAmount((long) (cpc * 1000000d));
     builder.withMaxCpc(maxCpc);
-    
+
     // Read the language parameter.
     if (cmdLine.hasOption("lang")) {
       for (String language : cmdLine.getOptionValues("lang")) {
@@ -440,15 +442,15 @@ public class KeywordOptimizer {
     if (cmdLine.hasOption("loc")) {
       for (String location : cmdLine.getOptionValues("loc")) {
         long loc = Long.parseLong(location);
-  
+
         log("Using location: " + loc);
         builder.withLocation(loc);
       }
     }
-    
+
     return builder.build();
   }
-  
+
   /**
    * Creates the seed generator based on the command line options.
    *
@@ -493,7 +495,6 @@ public class KeywordOptimizer {
       TisSearchTermsSeedGenerator seedGenerator =
           new TisSearchTermsSeedGenerator(
               context.getAdwordsApiUtil().getService(TargetingIdeaServiceInterface.class),
-              context.getAdwordsApiUtil().getClientCustomerId(),
               matchTypes,
               campaignSettings);
       for (String keyword : keywords) {
@@ -508,11 +509,10 @@ public class KeywordOptimizer {
       TisSearchTermsSeedGenerator seedGenerator =
           new TisSearchTermsSeedGenerator(
               context.getAdwordsApiUtil().getService(TargetingIdeaServiceInterface.class),
-              context.getAdwordsApiUtil().getClientCustomerId(),
               matchTypes,
               campaignSettings);
       for (String term : terms) {
-        log("Using seed serach term: " + term);
+        log("Using seed search term: " + term);
         seedGenerator.addSearchTerm(term);
       }
 
@@ -523,7 +523,6 @@ public class KeywordOptimizer {
       TisUrlSeedGenerator seedGenerator =
           new TisUrlSeedGenerator(
               context.getAdwordsApiUtil().getService(TargetingIdeaServiceInterface.class),
-              context.getAdwordsApiUtil().getClientCustomerId(),
               matchTypes,
               campaignSettings);
       for (String url : urls) {
@@ -538,7 +537,6 @@ public class KeywordOptimizer {
       TisUrlSeedGenerator seedGenerator =
           new TisUrlSeedGenerator(
               context.getAdwordsApiUtil().getService(TargetingIdeaServiceInterface.class),
-              context.getAdwordsApiUtil().getClientCustomerId(),
               matchTypes,
               campaignSettings);
       for (String url : urls) {
@@ -553,7 +551,6 @@ public class KeywordOptimizer {
       TisCategorySeedGenerator seedGenerator =
           new TisCategorySeedGenerator(
               context.getAdwordsApiUtil().getService(TargetingIdeaServiceInterface.class),
-              context.getAdwordsApiUtil().getClientCustomerId(),
               category,
               matchTypes,
               campaignSettings);
@@ -700,7 +697,7 @@ public class KeywordOptimizer {
     if (!cmdLine.hasOption("ag")) {
       throw new KeywordOptimizerException("No ad group ID (option -ag specified)");
     }
-    
+
     String adGroupId = cmdLine.getOptionValue("ag");
 
     try {
@@ -800,7 +797,7 @@ public class KeywordOptimizer {
 
     Scanner scan = null;
     try {
-      scan = new Scanner(new File(fileName));
+      scan = new Scanner(new File(fileName), UTF_8.name());
       while (scan.hasNextLine()) {
         String line = scan.nextLine().trim();
 

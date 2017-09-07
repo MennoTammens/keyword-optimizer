@@ -14,29 +14,24 @@
 
 package com.google.api.ads.adwords.keywordoptimizer;
 
-import com.google.api.ads.adwords.axis.v201609.cm.Criterion;
-import com.google.api.ads.adwords.axis.v201609.cm.Keyword;
-import com.google.api.ads.adwords.axis.v201609.cm.KeywordMatchType;
-import com.google.api.ads.adwords.axis.v201609.cm.Language;
-import com.google.api.ads.adwords.axis.v201609.cm.Location;
-import com.google.api.ads.adwords.axis.v201609.cm.Money;
-
-import com.google.api.ads.adwords.axis.v201609.o.Attribute;
-import com.google.api.ads.adwords.axis.v201609.o.AttributeType;
-import com.google.api.ads.adwords.axis.v201609.o.DoubleAttribute;
-
-import com.google.api.ads.adwords.axis.v201609.o.LanguageSearchParameter;
-import com.google.api.ads.adwords.axis.v201609.o.LocationSearchParameter;
-
-import com.google.api.ads.adwords.axis.v201609.o.LongAttribute;
-import com.google.api.ads.adwords.axis.v201609.o.MoneyAttribute;
-import com.google.api.ads.adwords.axis.v201609.o.MonthlySearchVolume;
-import com.google.api.ads.adwords.axis.v201609.o.MonthlySearchVolumeAttribute;
-
-import com.google.api.ads.adwords.axis.v201609.o.SearchParameter;
-import com.google.api.ads.adwords.axis.v201609.o.StatsEstimate;
-
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaService;
+import com.google.api.ads.adwords.axis.v201708.cm.Criterion;
+import com.google.api.ads.adwords.axis.v201708.cm.Keyword;
+import com.google.api.ads.adwords.axis.v201708.cm.KeywordMatchType;
+import com.google.api.ads.adwords.axis.v201708.cm.Language;
+import com.google.api.ads.adwords.axis.v201708.cm.Location;
+import com.google.api.ads.adwords.axis.v201708.cm.Money;
+import com.google.api.ads.adwords.axis.v201708.o.Attribute;
+import com.google.api.ads.adwords.axis.v201708.o.AttributeType;
+import com.google.api.ads.adwords.axis.v201708.o.DoubleAttribute;
+import com.google.api.ads.adwords.axis.v201708.o.LanguageSearchParameter;
+import com.google.api.ads.adwords.axis.v201708.o.LocationSearchParameter;
+import com.google.api.ads.adwords.axis.v201708.o.LongAttribute;
+import com.google.api.ads.adwords.axis.v201708.o.MoneyAttribute;
+import com.google.api.ads.adwords.axis.v201708.o.MonthlySearchVolume;
+import com.google.api.ads.adwords.axis.v201708.o.MonthlySearchVolumeAttribute;
+import com.google.api.ads.adwords.axis.v201708.o.SearchParameter;
+import com.google.api.ads.adwords.axis.v201708.o.StatsEstimate;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaService;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,12 +49,12 @@ public class KeywordOptimizerUtil {
         AttributeType.COMPETITION,
         AttributeType.TARGETED_MONTHLY_SEARCHES
       };
-  
+
   private static final String PLACEHOLDER_NULL = "       ---";
   private static final String FORMAT_NUMBER = "%10.3f";
   private static final String FORMAT_MONEY = "%10.2f";
   private static final int MICRO_UNITS = 1000000;
-  
+
   /**
    * Calculates the mean estimated statistics based on minimum and maximum values.
    *
@@ -177,7 +172,7 @@ public class KeywordOptimizerUtil {
 
   /**
    * Returns the mean of the two {@link Money} values if neither is null, else returns null.
-   * 
+   *
    * @param value1 first value
    * @param value2 second value
    * @return the mean of the two {@link Money} values
@@ -200,7 +195,7 @@ public class KeywordOptimizerUtil {
 
   /**
    * Returns the mean of the two {@link Number} values if neither is null, else returns null.
-   * 
+   *
    * @param value1 first value
    * @param value2 second value
    * @return the mean of the two {@link Money} values
@@ -227,7 +222,7 @@ public class KeywordOptimizerUtil {
   /**
    * Returns a string representation of the given {@link StatsEstimate}. Please note, as not all
    * classes belong to the project itself, toString methods are bundled here.
-   * 
+   *
    * @param estimate the estimate
    * @return a string representation of the estimate
    */
@@ -245,7 +240,7 @@ public class KeywordOptimizerUtil {
 
   /**
    * Convenience method for creating a new keyword.
-   * 
+   *
    * @param text the keyword text
    * @param matchType the match type (BROAD, PHRASE, EXACT)
    * @return the newly created {@link Keyword}
@@ -268,7 +263,7 @@ public class KeywordOptimizerUtil {
     money.setMicroAmount(microAmount);
     return money;
   }
-  
+
   /**
    * Convenience method for creating a money object.
    *
@@ -280,10 +275,10 @@ public class KeywordOptimizerUtil {
     money.setMicroAmount((long) (value * MICRO_UNITS));
     return money;
   }
-  
+
   /**
    * Formats a given number in a default format (3 decimals, padded left to 10 characters).
-   * 
+   *
    * @param nr a number
    * @return a string version of the number
    */
@@ -308,10 +303,10 @@ public class KeywordOptimizerUtil {
 
     return String.format(FORMAT_NUMBER, nr);
   }
-  
+
   /**
    * Formats a given number for CSV output (effectively handles null values).
-   * 
+   *
    * @param nr a number
    * @return a string version of the number
    */
@@ -325,7 +320,7 @@ public class KeywordOptimizerUtil {
 
   /**
    * Formats a given monetary value in a default format (2 decimals, padded left to 10 characters).
-   * 
+   *
    * @param money a monetary value
    * @return a string version of the monetary value
    */
@@ -340,10 +335,10 @@ public class KeywordOptimizerUtil {
     double amount = (double) microAmount / MICRO_UNITS;
     return String.format(FORMAT_MONEY, amount);
   }
-  
+
   /**
    * Returns all objects in the given list that are instances of the given class.
-   * 
+   *
    * @param input list of objects to look through
    * @param typeClass class of the objects to filter
    * @return an array of all objects in the given list that are instances
@@ -365,7 +360,7 @@ public class KeywordOptimizerUtil {
   /**
    * Converts a list of given trigger criteria to according {@link SearchParameter}s for the
    * TargetingIdeaService.
-   * 
+   *
    * @param criteria the criteria to be converted
    * @return a list of according {@link SearchParameter}s
    */
@@ -389,7 +384,6 @@ public class KeywordOptimizerUtil {
     }
 
     // Any others are not supported right now.
-    
     return parameters;
   }
   

@@ -42,7 +42,7 @@ public class Optimizer {
 
   /**
    * Creates a new {@link Optimizer} based on the given parameters.
-   * 
+   *
    * @param seedGenerator used to create the initial keyword population
    * @param alternativesFinder used to derive keyword alternatives from the best keywords
    * @param evaluator used to assign a score to each keyword
@@ -59,7 +59,7 @@ public class Optimizer {
 
   /**
    * Executes the keyword optimization process based on the parameters given in the constructors.
-   * 
+   *
    * @return A {@link KeywordCollection}, a list of {@link KeywordInfo}s) of the keywords that were
    *         found / optimized during the process, with their traffic estimates and quality scores
    * @throws KeywordOptimizerException in case of an error during the optimization process
@@ -85,7 +85,7 @@ public class Optimizer {
 
   /**
    * Dumps the status of the current round to the logger.
-   * 
+   *
    * @param currentPopulation the current set of keywords
    * @param currentStep the current search step
    */

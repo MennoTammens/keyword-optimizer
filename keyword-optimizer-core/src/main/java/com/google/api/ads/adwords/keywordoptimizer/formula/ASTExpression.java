@@ -29,7 +29,7 @@ public class ASTExpression extends SimpleNode {
     if (children.length != 1) {
       throw new FormulaException("Invalid formula: " + toString());
     }
-  
+
     return ((SimpleNode) children[0]).calculateScore(context);
   }
 

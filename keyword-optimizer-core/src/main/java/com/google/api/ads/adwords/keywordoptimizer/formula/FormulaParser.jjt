@@ -15,7 +15,7 @@
 options {
   MULTI=true;
   VISITOR=true;
-  STATIC = false; 
+  STATIC = false;
   NODE_DEFAULT_VOID=true;
   NODE_PACKAGE="com.google.api.ads.adwords.keywordoptimizer.formula";
 }
@@ -31,7 +31,6 @@ public class FormulaParser {
   public FormulaParser(String source) {
     this(new StringReader(source));
   }
- 
 }
 
 PARSER_END(FormulaParser)
@@ -49,7 +48,7 @@ SKIP :
 TOKEN : /* LITERALS */
 {
   < INTEGER_LITERAL: ["1"-"9"] (["0"-"9"])* >
-| 
+|
   < DOUBLE_LITERAL: (["0"-"9"])* "." (["0"-"9"])+ >
 |
 < ADD_OPERATOR: ["+","-"] >
@@ -101,13 +100,13 @@ void MultiplicativeExpression() :
 /** A Unary Expression. */
 void UnaryExpression() : {}
 {
-  BracketedExpression() | Identifier() | Double() | Integer() 
+  BracketedExpression() | Identifier() | Double() | Integer()
 }
 
 /** Bracketed Expression. */
 void BracketedExpression() : {}
 {
-  "(" Expression() ")" 
+  "(" Expression() ")"
 }
 
 /** An Identifier. */

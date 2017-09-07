@@ -23,7 +23,7 @@ public interface AlternativesFinder {
   /**
    * Derive a list of new keywords from an existing collection. A {@link AlternativesFinder} is
    * typically used to derive other (hopefully good) keywords from existing good ones.
-   * 
+   *
    * @param keywords sample {@link KeywordCollection}
    * @return a list of alternatives / derived {@link KeywordCollection}
    * @throws KeywordOptimizerException in case of an error while finding keyword alternatives

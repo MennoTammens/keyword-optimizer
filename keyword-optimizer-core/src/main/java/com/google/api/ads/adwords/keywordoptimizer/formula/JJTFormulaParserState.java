@@ -61,16 +61,16 @@ public class JJTFormulaParserState {
     return nodes.get(0);
   }
 
-  /** 
-   * Pushes a node on to the stack. 
+  /**
+   * Pushes a node on to the stack.
    */
   public void pushNode(Node n) {
     nodes.add(n);
     ++sp;
   }
 
-  /** 
-   * Returns the node on the top of the stack, and remove it from the stack. 
+  /**
+   * Returns the node on the top of the stack, and remove it from the stack.
    */
   public Node popNode() {
     if (--sp < mk) {
@@ -79,15 +79,15 @@ public class JJTFormulaParserState {
     return nodes.remove(nodes.size() - 1);
   }
 
-  /** 
+  /**
    * Returns the node currently on the top of the stack.
    */
   public Node peekNode() {
     return nodes.get(nodes.size() - 1);
   }
 
-  /** 
-   * Returns the number of children on the stack in the current node scope. 
+  /**
+   * Returns the number of children on the stack in the current node scope.
    */
   public int nodeArity() {
     return sp - mk;
