@@ -39,7 +39,7 @@ public class DefaultRoundStrategy implements RoundStrategy {
 
   /**
    * Creates a new {@link DefaultRoundStrategy}.
-   * 
+   *
    * @param maxNrSteps maximum number of round / steps (<code>null</code> for no restriction)
    * @param minImprovement minimum improvement of the average score to be reached until the process
    *                       stops (<code>null</code> for no restriction)
@@ -52,7 +52,7 @@ public class DefaultRoundStrategy implements RoundStrategy {
     this.minImprovementBetweenSteps = minImprovement;
     this.maxPopulationSize = maxPopulationSize;
     this.maxNumberOfAlternatives = replicateBestCount;
-  
+
     lastAvgScore = null;
   }
 
@@ -61,7 +61,7 @@ public class DefaultRoundStrategy implements RoundStrategy {
    */
   public DefaultRoundStrategy(OptimizationContext context) {
     Configuration config = context.getConfiguration();
-  
+
     maxNumberOfSteps = config.getInt(KeywordOptimizerProperty.RoundStrategyMaxSteps.getName(), 10);
     minImprovementBetweenSteps = config.getDouble(
         KeywordOptimizerProperty.RoundStrategyMinImprovementBetweenSteps.getName(), 0);
@@ -69,7 +69,7 @@ public class DefaultRoundStrategy implements RoundStrategy {
         config.getInt(KeywordOptimizerProperty.RoundStrategyMaxPopulation.getName(), 100);
     maxNumberOfAlternatives =
         config.getInt(KeywordOptimizerProperty.RoundStrategyReplicateBest.getName(), 10);
-  
+
     lastAvgScore = null;
   }
 
@@ -108,7 +108,7 @@ public class DefaultRoundStrategy implements RoundStrategy {
 
     lastAvgScore = nextPopulation.getAverageScore();
     currentStep++;
-    
+
     return nextPopulation;
   }
 

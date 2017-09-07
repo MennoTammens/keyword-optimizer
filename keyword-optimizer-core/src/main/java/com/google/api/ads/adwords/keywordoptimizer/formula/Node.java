@@ -25,38 +25,38 @@ public interface Node {
    */
   public void jjtOpen();
 
-  /** 
+  /**
    * This method is called after all the child nodes have been added.
    */
   public void jjtClose();
 
-  /** 
+  /**
    * This method is used to inform the node of its parent. 
    */
   public void jjtSetParent(Node n);
 
-  /** 
-   * Returns the parent node. 
+  /**
+   * Returns the parent node.
    */
   public Node jjtGetParent();
 
-  /** 
+  /**
    * This method tells the node to add its argument to the node's list of children.
    */
   public void jjtAddChild(Node n, int i);
 
-  /** 
+  /**
    * This method returns a child node. The children are numbered from zero, left to right.
    */
   public Node jjtGetChild(int i);
 
-  /** 
+  /**
    * Returns the number of children the node has.
    */
   public int jjtGetNumChildren();
 
-  /** 
-   * Accepts a visitor. 
+  /**
+   * Accepts a visitor.
    */
   public Object jjtAccept(FormulaParserVisitor visitor, Object data);
 }

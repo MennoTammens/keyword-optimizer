@@ -14,14 +14,14 @@
 
 package com.google.api.ads.adwords.keywordoptimizer;
 
-import com.google.api.ads.adwords.axis.v201609.cm.KeywordMatchType;
-import com.google.api.ads.adwords.axis.v201609.cm.Paging;
-import com.google.api.ads.adwords.axis.v201609.o.IdeaType;
-import com.google.api.ads.adwords.axis.v201609.o.RelatedToQuerySearchParameter;
-import com.google.api.ads.adwords.axis.v201609.o.RequestType;
-import com.google.api.ads.adwords.axis.v201609.o.SearchParameter;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaSelector;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaServiceInterface;
+import com.google.api.ads.adwords.axis.v201708.cm.KeywordMatchType;
+import com.google.api.ads.adwords.axis.v201708.cm.Paging;
+import com.google.api.ads.adwords.axis.v201708.o.IdeaType;
+import com.google.api.ads.adwords.axis.v201708.o.RelatedToQuerySearchParameter;
+import com.google.api.ads.adwords.axis.v201708.o.RequestType;
+import com.google.api.ads.adwords.axis.v201708.o.SearchParameter;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaSelector;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaServiceInterface;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -38,16 +38,14 @@ public class TisSearchTermsSeedGenerator extends TisBasedSeedGenerator {
    * added separately.
    *
    * @param tis the API interface to the TargetingIdeaService
-   * @param clientCustomerId the AdWords customer ID
    * @param matchTypes match types to be used for seed keyword creation
    * @param campaignConfiguration additional campaign-level settings for keyword evaluation
    */
   public TisSearchTermsSeedGenerator(
       TargetingIdeaServiceInterface tis,
-      Long clientCustomerId,
       Set<KeywordMatchType> matchTypes,
       CampaignConfiguration campaignConfiguration) {
-    super(tis, clientCustomerId, matchTypes, campaignConfiguration);
+    super(tis, matchTypes, campaignConfiguration);
     seedKeywords = new HashSet<String>();
   }
 

@@ -25,7 +25,7 @@ public class EstimatorBasedEvaluator implements Evaluator {
   /**
    * Creates a new {@link EstimatorBasedEvaluator} that uses the given arguments for calculating the
    * score.
-   * 
+   *
    * @param estimator An {@link TrafficEstimator} to retrieve traffic estimates from
    * @param scoreCalculator A {@link ScoreCalculator} to derive a score from these estimates
    */

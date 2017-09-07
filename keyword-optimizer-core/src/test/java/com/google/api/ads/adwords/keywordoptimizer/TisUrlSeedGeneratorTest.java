@@ -17,22 +17,22 @@ package com.google.api.ads.adwords.keywordoptimizer;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import com.google.api.ads.adwords.axis.v201609.cm.ApiException;
-import com.google.api.ads.adwords.axis.v201609.cm.KeywordMatchType;
-import com.google.api.ads.adwords.axis.v201609.o.Attribute;
-import com.google.api.ads.adwords.axis.v201609.o.AttributeType;
+import com.google.api.ads.adwords.axis.v201708.cm.ApiException;
+import com.google.api.ads.adwords.axis.v201708.cm.KeywordMatchType;
+import com.google.api.ads.adwords.axis.v201708.o.Attribute;
+import com.google.api.ads.adwords.axis.v201708.o.AttributeType;
 
-import com.google.api.ads.adwords.axis.v201609.o.DoubleAttribute;
-import com.google.api.ads.adwords.axis.v201609.o.LongAttribute;
-import com.google.api.ads.adwords.axis.v201609.o.MoneyAttribute;
-import com.google.api.ads.adwords.axis.v201609.o.MonthlySearchVolumeAttribute;
+import com.google.api.ads.adwords.axis.v201708.o.DoubleAttribute;
+import com.google.api.ads.adwords.axis.v201708.o.LongAttribute;
+import com.google.api.ads.adwords.axis.v201708.o.MoneyAttribute;
+import com.google.api.ads.adwords.axis.v201708.o.MonthlySearchVolumeAttribute;
 
-import com.google.api.ads.adwords.axis.v201609.o.StringAttribute;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdea;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaPage;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaSelector;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaServiceInterface;
-import com.google.api.ads.adwords.axis.v201609.o.Type_AttributeMapEntry;
+import com.google.api.ads.adwords.axis.v201708.o.StringAttribute;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdea;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaPage;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaSelector;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaServiceInterface;
+import com.google.api.ads.adwords.axis.v201708.o.Type_AttributeMapEntry;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import java.rmi.RemoteException;
@@ -68,7 +68,7 @@ public class TisUrlSeedGeneratorTest {
 
     seedGenerator =
         new TisUrlSeedGenerator(
-            new MockTargetingIdeaService(), 12345L, matchTypes, campaignConfiguration);
+            new MockTargetingIdeaService(), matchTypes, campaignConfiguration);
   }
 
   /**

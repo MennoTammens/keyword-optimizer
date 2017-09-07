@@ -17,7 +17,7 @@ package com.google.api.ads.adwords.keywordoptimizer;
 import org.apache.commons.configuration.Configuration;
 
 /**
- * This class holds shared objects during the optimization projects. 
+ * This class holds shared objects during the optimization projects.
  */
 public class OptimizationContext {
   private Configuration configuration;

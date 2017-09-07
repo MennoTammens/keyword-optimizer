@@ -14,22 +14,22 @@
 
 package com.google.api.ads.adwords.keywordoptimizer;
 
-import com.google.api.ads.adwords.axis.v201609.cm.ApiException;
-import com.google.api.ads.adwords.axis.v201609.cm.Keyword;
-import com.google.api.ads.adwords.axis.v201609.cm.KeywordMatchType;
-import com.google.api.ads.adwords.axis.v201609.cm.Paging;
-import com.google.api.ads.adwords.axis.v201609.o.Attribute;
-import com.google.api.ads.adwords.axis.v201609.o.AttributeType;
-import com.google.api.ads.adwords.axis.v201609.o.IdeaType;
-import com.google.api.ads.adwords.axis.v201609.o.RelatedToQuerySearchParameter;
-import com.google.api.ads.adwords.axis.v201609.o.RequestType;
-import com.google.api.ads.adwords.axis.v201609.o.SearchParameter;
-import com.google.api.ads.adwords.axis.v201609.o.StringAttribute;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdea;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaPage;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaSelector;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaService;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaServiceInterface;
+import com.google.api.ads.adwords.axis.v201708.cm.ApiException;
+import com.google.api.ads.adwords.axis.v201708.cm.Keyword;
+import com.google.api.ads.adwords.axis.v201708.cm.KeywordMatchType;
+import com.google.api.ads.adwords.axis.v201708.cm.Paging;
+import com.google.api.ads.adwords.axis.v201708.o.Attribute;
+import com.google.api.ads.adwords.axis.v201708.o.AttributeType;
+import com.google.api.ads.adwords.axis.v201708.o.IdeaType;
+import com.google.api.ads.adwords.axis.v201708.o.RelatedToQuerySearchParameter;
+import com.google.api.ads.adwords.axis.v201708.o.RequestType;
+import com.google.api.ads.adwords.axis.v201708.o.SearchParameter;
+import com.google.api.ads.adwords.axis.v201708.o.StringAttribute;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdea;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaPage;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaSelector;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaService;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaServiceInterface;
 import com.google.api.ads.common.lib.utils.Maps;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
@@ -49,7 +49,6 @@ public class TisAlternativesFinder implements AlternativesFinder {
   public static final int PAGE_SIZE = 100;
   
   private TargetingIdeaServiceInterface tis;
-  private final Long clientCustomerId;
 
   /**
    * Creates a new {@link TisAlternativesFinder}.
@@ -58,7 +57,6 @@ public class TisAlternativesFinder implements AlternativesFinder {
    */
   public TisAlternativesFinder(OptimizationContext context) {
     tis = context.getAdwordsApiUtil().getService(TargetingIdeaServiceInterface.class);
-    clientCustomerId = context.getAdwordsApiUtil().getClientCustomerId();
   }
 
   @Override
@@ -125,17 +123,9 @@ public class TisAlternativesFinder implements AlternativesFinder {
 
     try {
       TargetingIdeaPage page = null;
-      final AwapiRateLimiter rateLimiter =
-          AwapiRateLimiter.getInstance(AwapiRateLimiter.RateLimitBucket.OTHERS);
-
       do {
         selector.setPaging(new Paging(offset, PAGE_SIZE));
-        page = rateLimiter.run(new AwapiCall<TargetingIdeaPage>() {
-          @Override
-          public TargetingIdeaPage invoke() throws ApiException, RemoteException {
-            return tis.get(selector);
-          }
-        }, clientCustomerId);
+        page = tis.get(selector);
 
         if (page.getEntries() != null) {
           for (TargetingIdea targetingIdea : page.getEntries()) {

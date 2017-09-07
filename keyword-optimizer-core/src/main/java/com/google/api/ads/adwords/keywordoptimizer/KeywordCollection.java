@@ -14,8 +14,8 @@
 
 package com.google.api.ads.adwords.keywordoptimizer;
 
-import com.google.api.ads.adwords.axis.v201609.cm.Keyword;
-import com.google.api.ads.adwords.axis.v201609.cm.KeywordMatchType;
+import com.google.api.ads.adwords.axis.v201708.cm.Keyword;
+import com.google.api.ads.adwords.axis.v201708.cm.KeywordMatchType;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Ordering;
 import java.util.Collection;
@@ -50,16 +50,16 @@ public class KeywordCollection implements Iterable<KeywordInfo> {
 
   /**
    * Adds information about a keyword to this collection.
-   * 
+   *
    * @param info the keyword information to be added
    */
   public void add(KeywordInfo info) {
     keywords.put(info.getKeyword(), info);
   }
-  
+
   /**
    * Convenience method to add several {@link KeywordInfo}s to this collection.
-   * 
+   *
    * @param infos the {@link KeywordInfo}s to be added
    */
   public void addAll(Collection<KeywordInfo> infos) {
@@ -77,7 +77,7 @@ public class KeywordCollection implements Iterable<KeywordInfo> {
 
   /**
    * Returns whether information about a given keyword exists in this collection.
-   * 
+   *
    * @param keyword they {@link Keyword} to be checked
    */
   public boolean contains(Keyword keyword) {
@@ -97,7 +97,7 @@ public class KeywordCollection implements Iterable<KeywordInfo> {
   public CampaignConfiguration getCampaignConfiguration() {
     return campaignConfiguration;
   }
-  
+
   /**
    * Returns the distinct texts of all containing {@link Keyword}s.
    */
@@ -130,7 +130,7 @@ public class KeywordCollection implements Iterable<KeywordInfo> {
   public List<KeywordInfo> getListSortedByScore() {
     return Ordering.from(new ScoreComparator()).reverse().sortedCopy(keywords.values());
   }
-  
+
   /**
    * Returns a list of all contained {@link KeywordInfo}s sorted by keywords (alphabetic order).
    */
@@ -140,7 +140,7 @@ public class KeywordCollection implements Iterable<KeywordInfo> {
 
   /**
    * Returns the best x {@link KeywordInfo}s in this collection.
-   * 
+   *
    * @param count the number of {@link KeywordInfo}s to return (=x)
    */
   public KeywordCollection getBest(int count) {
@@ -154,7 +154,7 @@ public class KeywordCollection implements Iterable<KeywordInfo> {
   /**
    * Returns the average score of the {@link KeywordInfo}s contained. Entries without a score (which
    * are not evaluated yet) are skipped in the calculation.
-   * 
+   *
    * @return the average score of the {@link KeywordInfo}s contained ({@link Double#NaN} if the
    *         collection is empty or the entries are not evaluated yet)
    */
@@ -172,7 +172,7 @@ public class KeywordCollection implements Iterable<KeywordInfo> {
   public Iterator<KeywordInfo> iterator() {
     return keywords.values().iterator();
   }
-  
+
   @Override
   public String toString() {
     return JOINER.join(keywords.values()) + SystemUtils.LINE_SEPARATOR;

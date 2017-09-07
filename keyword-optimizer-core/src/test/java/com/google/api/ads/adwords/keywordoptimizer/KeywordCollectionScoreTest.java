@@ -17,9 +17,9 @@ package com.google.api.ads.adwords.keywordoptimizer;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import com.google.api.ads.adwords.axis.v201609.cm.Keyword;
-import com.google.api.ads.adwords.axis.v201609.cm.KeywordMatchType;
-import com.google.api.ads.adwords.axis.v201609.cm.Money;
+import com.google.api.ads.adwords.axis.v201708.cm.Keyword;
+import com.google.api.ads.adwords.axis.v201708.cm.KeywordMatchType;
+import com.google.api.ads.adwords.axis.v201708.cm.Money;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 import java.util.List;
@@ -60,7 +60,7 @@ public class KeywordCollectionScoreTest {
     beta.setText("beta");
     beta.setMatchType(KeywordMatchType.EXACT);
     betaInfo = new KeywordInfo(beta, null, null, 1d);
-    
+
     betaBroad = new Keyword();
     betaBroad.setText("beta");
     betaBroad.setMatchType(KeywordMatchType.BROAD);
@@ -86,26 +86,23 @@ public class KeywordCollectionScoreTest {
 
   /**
    * Check sorting keywords by text / match type ({@link KeywordComparator}).
-   * 
    */
   @Test
   public void checkKeywordComparator() {
     List<KeywordInfo> sortedKeywords = keywords.getListSortedByKeyword();
-    
+
     assertEquals(ImmutableList.of(alphaInfo, betaBroadInfo, betaInfo, gammaInfo), sortedKeywords);
   }
 
   /**
    * Check sorting keywords by score ({@link ScoreComparator}).
-   * 
    */
   @Test
   public void checkScoreComparator() {
     List<KeywordInfo> sortedKeywords = keywords.getListSortedByScore();
-    
     assertEquals(ImmutableList.of(gammaInfo, alphaInfo, betaBroadInfo, betaInfo), sortedKeywords);
   }
-  
+
   /**
    * Check sorting keywords by score ({@link ScoreComparator}).
    */
@@ -113,7 +110,7 @@ public class KeywordCollectionScoreTest {
   public void checkBestX() {
     // Check returning no keywords leads to an empty list.
     assertTrue(Iterables.elementsEqual(keywords.getBest(0), ImmutableList.of()));
-    
+
     // Check returning the best keyword works correctly.
     assertTrue(Iterables.elementsEqual(keywords.getBest(1), ImmutableList.of(gammaInfo)));
 
@@ -131,13 +128,12 @@ public class KeywordCollectionScoreTest {
     // Check returning all keywords leads to the same elements.
     assertTrue(Iterables.elementsEqual(keywords.getBest(4), keywords));
 
-    // Check returning more than the number of contained keywords still leads to the the same list.
+    // Check returning more than the number of contained keywords still leads to the same list.
     assertTrue(Iterables.elementsEqual(keywords.getBest(5), keywords));
   }
-  
+
   /**
    * Check that the average score calculation works.
-   * 
    */
   @Test
   public void checkAverage() {

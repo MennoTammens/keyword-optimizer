@@ -14,17 +14,17 @@
 
 package com.google.api.ads.adwords.keywordoptimizer;
 
-import com.google.api.ads.adwords.axis.v201609.cm.ApiException;
-import com.google.api.ads.adwords.axis.v201609.cm.KeywordMatchType;
-import com.google.api.ads.adwords.axis.v201609.cm.Paging;
-import com.google.api.ads.adwords.axis.v201609.o.Attribute;
-import com.google.api.ads.adwords.axis.v201609.o.AttributeType;
-import com.google.api.ads.adwords.axis.v201609.o.StringAttribute;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdea;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaPage;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaSelector;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaService;
-import com.google.api.ads.adwords.axis.v201609.o.TargetingIdeaServiceInterface;
+import com.google.api.ads.adwords.axis.v201708.cm.ApiException;
+import com.google.api.ads.adwords.axis.v201708.cm.KeywordMatchType;
+import com.google.api.ads.adwords.axis.v201708.cm.Paging;
+import com.google.api.ads.adwords.axis.v201708.o.Attribute;
+import com.google.api.ads.adwords.axis.v201708.o.AttributeType;
+import com.google.api.ads.adwords.axis.v201708.o.StringAttribute;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdea;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaPage;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaSelector;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaService;
+import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaServiceInterface;
 import com.google.api.ads.common.lib.utils.Maps;
 import com.google.common.collect.ImmutableMap;
 import java.rmi.RemoteException;
@@ -44,24 +44,20 @@ public abstract class TisBasedSeedGenerator extends AbstractSeedGenerator {
   public static final int PAGE_SIZE = 100;
   
   protected TargetingIdeaServiceInterface tis;
-  private final Long clientCustomerId;
 
   /**
    * Creates a new {@link TisBasedSeedGenerator} based on the given service and customer id.
    *
    * @param tis the API interface to the TargetingIdeaService
-   * @param clientCustomerId the AdWords customer ID
    * @param matchTypes match types to be used for seed keyword creation
    * @param campaignConfiguration additional campaign-level settings for keyword evaluation
    */
   public TisBasedSeedGenerator(
       TargetingIdeaServiceInterface tis,
-      Long clientCustomerId,
       Set<KeywordMatchType> matchTypes,
       CampaignConfiguration campaignConfiguration) {
     super(matchTypes, campaignConfiguration);
     this.tis = tis;
-    this.clientCustomerId = clientCustomerId;
   }
 
   /**
@@ -72,24 +68,16 @@ public abstract class TisBasedSeedGenerator extends AbstractSeedGenerator {
   @Override
   protected ImmutableMap<String, IdeaEstimate> getKeywordsAndEstimates()
       throws KeywordOptimizerException {
-    final TargetingIdeaSelector selector = getSelector();
+    TargetingIdeaSelector selector = getSelector();
     Map<String, IdeaEstimate> keywordsAndEstimates = new HashMap<String, IdeaEstimate>();
     
     try {
       int offset = 0;
 
       TargetingIdeaPage page = null;
-      final AwapiRateLimiter rateLimiter =
-          AwapiRateLimiter.getInstance(AwapiRateLimiter.RateLimitBucket.OTHERS);
-
       do {
         selector.setPaging(new Paging(offset, PAGE_SIZE));
-        page = rateLimiter.run(new AwapiCall<TargetingIdeaPage>() {
-          @Override
-          public TargetingIdeaPage invoke() throws ApiException, RemoteException {
-            return tis.get(selector);
-          }
-        }, clientCustomerId);
+        page = tis.get(selector);
 
         if (page.getEntries() != null) {
           for (TargetingIdea targetingIdea : page.getEntries()) {
