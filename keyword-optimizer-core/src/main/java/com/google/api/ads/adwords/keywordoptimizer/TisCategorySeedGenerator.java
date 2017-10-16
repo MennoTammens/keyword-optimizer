@@ -14,15 +14,15 @@
 
 package com.google.api.ads.adwords.keywordoptimizer;
 
-import com.google.api.ads.adwords.axis.v201708.cm.KeywordMatchType;
-import com.google.api.ads.adwords.axis.v201708.cm.Paging;
-import com.google.api.ads.adwords.axis.v201708.o.CategoryProductsAndServicesSearchParameter;
-import com.google.api.ads.adwords.axis.v201708.o.IdeaType;
-import com.google.api.ads.adwords.axis.v201708.o.RequestType;
-import com.google.api.ads.adwords.axis.v201708.o.SearchParameter;
-import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaSelector;
-import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaService;
-import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaServiceInterface;
+import com.google.api.ads.adwords.axis.v201710.cm.KeywordMatchType;
+import com.google.api.ads.adwords.axis.v201710.cm.Paging;
+import com.google.api.ads.adwords.axis.v201710.o.CategoryProductsAndServicesSearchParameter;
+import com.google.api.ads.adwords.axis.v201710.o.IdeaType;
+import com.google.api.ads.adwords.axis.v201710.o.RequestType;
+import com.google.api.ads.adwords.axis.v201710.o.SearchParameter;
+import com.google.api.ads.adwords.axis.v201710.o.TargetingIdeaSelector;
+import com.google.api.ads.adwords.axis.v201710.o.TargetingIdeaService;
+import com.google.api.ads.adwords.axis.v201710.o.TargetingIdeaServiceInterface;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;

@@ -14,10 +14,10 @@
 
 package com.google.api.ads.adwords.keywordoptimizer;
 
-import com.google.api.ads.adwords.axis.v201708.cm.Keyword;
-import com.google.api.ads.adwords.axis.v201708.o.KeywordEstimate;
-import com.google.api.ads.adwords.axis.v201708.o.StatsEstimate;
-import com.google.api.ads.adwords.axis.v201708.o.TrafficEstimatorService;
+import com.google.api.ads.adwords.axis.v201710.cm.Keyword;
+import com.google.api.ads.adwords.axis.v201710.o.KeywordEstimate;
+import com.google.api.ads.adwords.axis.v201710.o.StatsEstimate;
+import com.google.api.ads.adwords.axis.v201710.o.TrafficEstimatorService;
 import org.apache.commons.lang.SystemUtils;
 
 /**

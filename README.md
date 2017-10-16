@@ -248,8 +248,13 @@ Pull requests are very much appreciated. Please sign the [Google Individual Cont
 (there is a convenient online form) before submitting.
 
 <dl>
-  <dt>Authors</dt><dd><a href="https://plus.google.com/116541501935961193199">Timo Bozsolik (Google Inc.)</a>
-  <dt>Copyright</dt><dd>Copyright © 2016 Google, Inc.</dd>
+  <dt>Authors</dt>
+  <dd>
+    <a href="https://plus.google.com/116541501935961193199">Timo Bozsolik (Google Inc.)</a>,
+    <a href="https://plus.google.com/109796202278783565960">Damien Allison
+    (Google Inc.).</a>
+  </dd>
+  <dt>Copyright</dt><dd>Copyright © 2017 Google, Inc.</dd>
   <dt>License</dt><dd>Apache 2.0</dd>
   <dt>Limitations</dt><dd>This is example software, use with caution at your own risk.</dd>
 </dl>

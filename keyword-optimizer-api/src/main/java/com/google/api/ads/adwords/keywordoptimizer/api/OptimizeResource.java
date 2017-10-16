@@ -14,8 +14,8 @@
 
 package com.google.api.ads.adwords.keywordoptimizer.api;
 
-import com.google.api.ads.adwords.axis.v201708.cm.KeywordMatchType;
-import com.google.api.ads.adwords.axis.v201708.o.TargetingIdeaServiceInterface;
+import com.google.api.ads.adwords.axis.v201710.cm.KeywordMatchType;
+import com.google.api.ads.adwords.axis.v201710.o.TargetingIdeaServiceInterface;
 import com.google.api.ads.adwords.keywordoptimizer.AdWordsApiUtil;
 import com.google.api.ads.adwords.keywordoptimizer.AlternativesFinder;
 import com.google.api.ads.adwords.keywordoptimizer.CachedEstimator;
