@@ -156,7 +156,7 @@ Maven is configured to bundle the components needed for the API server into a
 war file (`keyword-optimizer-api/target/keyword-optimizer-api.war`). You can
 deploy this war file on all common Java application servers to run the API.
 Don't forget to customize the property files before running the build process
-(see above). 
+(see above).
 
 Alternatively, we included a standalone server based on
 [Jetty](https://en.wikipedia.org/wiki/Jetty), which you can run by starting
@@ -175,7 +175,7 @@ Uses a given URL to generate seed keywords (replace **<category>** with the
 actual category ID). Equivalent to  the `-sc` command-line parameter.
 * **http://localhost:8080/keyword-optimizer/api/optimize/term?term=<term>:**
 Uses a set of search terms to generate seed keywords (replace **<term>** with
-the search term / query. There can be multiple **<term>** parameters). 
+the search term / query. There can be multiple **<term>** parameters).
 Equivalent to  the `-st` command-line parameter.
 * **http://localhost:8080/keyword-optimizer/api/optimize/keyword?keyword=<keyword>:**
 Uses a set of keywords directly as a seed (replace **<keyword>** with
@@ -254,7 +254,7 @@ Pull requests are very much appreciated. Please sign the [Google Individual Cont
     <a href="https://plus.google.com/109796202278783565960">Damien Allison
     (Google Inc.).</a>
   </dd>
-  <dt>Copyright</dt><dd>Copyright © 2017 Google, Inc.</dd>
+  <dt>Copyright</dt><dd>Copyright © 2016-2017 Google, Inc.</dd>
   <dt>License</dt><dd>Apache 2.0</dd>
   <dt>Limitations</dt><dd>This is example software, use with caution at your own risk.</dd>
 </dl>
