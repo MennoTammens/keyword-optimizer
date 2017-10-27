@@ -113,7 +113,7 @@ public class JsonUtil {
           @Override
           public JsonElement serialize(
               Money src, java.lang.reflect.Type typeOfSrc, JsonSerializationContext context) {
-            JsonElement out = new JsonPrimitive(src.getMicroAmount() / 1000000);
+            JsonElement out = new JsonPrimitive(src.getMicroAmount() / 1000000.0);
             return out;
           }
         });
